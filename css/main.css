@@ -1,0 +1,37 @@
+h1 {
+    text-align: center;
+}
+
+#calculator {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    border-style: solid;
+    padding: 10px;
+}
+
+#display {
+    border-color: black;
+    border-style: solid;
+    text-align: right;
+    margin: 10px;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+#num-buttons {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+#operator-buttons {
+    display: flex;
+    flex-direction: column;
+}
