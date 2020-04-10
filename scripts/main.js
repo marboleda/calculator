@@ -32,3 +32,26 @@ function operate(operation, num1, num2) {
             console.log("Invalid operation");
     }
 }
+
+let displayValue = "";
+let currentNumDisplayValue = "";
+let values = [];
+
+const numButtons = document.querySelectorAll("button");
+
+numButtons.forEach((button) => {
+    button.addEventListener("click", (e) =>  {
+        if (button.id != "clear" && button.className == "num-button") {
+            displayValue += button.textContent;
+            currentNumDisplayValue += button.textContent;
+        } else if (button.className == "operator-button" && button.id != "equals-button") {
+            values.push(currentNumDisplayValue);
+            values.push(button.textContent);
+            currentNumDisplayValue = "";
+            displayValue += " " + button.textContent + " ";
+        } else {
+            displayValue = "";
+        }
+        document.querySelector("#display").textContent = displayValue;
+    });
+});
