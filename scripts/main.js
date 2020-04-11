@@ -88,6 +88,8 @@ numButtons.forEach((button) => {
             displayValue = currentNumDisplayValue;
         } else {
             displayValue = "";
+            currentNumDisplayValue = "";
+            values = [];
         }
         document.querySelector("#display").textContent = displayValue;
     });
