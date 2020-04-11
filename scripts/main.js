@@ -1,6 +1,8 @@
 let displayValue = "";
 let currentNum = "";
 let values = [];
+const numButtons = document.querySelectorAll("button");
+
 
 function add(num1, num2) {
     return (+num1) + (+num2);
@@ -38,6 +40,10 @@ function operate(operation, num1, num2) {
     }
 }
 
+function isOperator(str) {
+     return (str == "+" || str == "-" || str == "x" || str == "÷");
+}
+
 function equalsFunctionality(numsAndOperators) {
     let result;
     let highestPrecedenceIndex = 0;
@@ -69,8 +75,6 @@ function equalsFunctionality(numsAndOperators) {
     return result;
 }
 
-const numButtons = document.querySelectorAll("button");
-
 numButtons.forEach((button) => {
     button.addEventListener("click", (e) =>  {
         if (button.id != "clear" && button.className == "num-button") {
@@ -86,10 +90,7 @@ numButtons.forEach((button) => {
             if (currentNum != "") {
                 values.push(currentNum);
             }
-            if (values[values.length-1] == "x" ||
-                values[values.length-1] == "÷" ||
-                values[values.length-1] == "+" ||
-                values[values.length-1] == "-" ||
+            if (isOperator(values[values.length-1]) ||
                 values.length == 0) {
                     alert("Invalid input!");
             } else {
