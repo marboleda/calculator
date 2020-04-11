@@ -36,6 +36,7 @@ function operate(operation, num1, num2) {
             break;
         default:
             console.log("Invalid operation");
+            return null;
             break;
     }
 }
@@ -57,13 +58,14 @@ function equalsFunctionality(numsAndOperators) {
                     currentPrecedenceValue = 14;
                     highestPrecedenceIndex = i;
                 }
-            } else {
+            } else if (numsAndOperators[i] == "+" || numsAndOperators[i] == "-") {
                 if (currentPrecedenceValue < 13) {
                     currentPrecedenceValue = 13;
                     highestPrecedenceIndex = i;
                 }
             }
         }
+        console.log(highestPrecedenceIndex);
         result = operate(numsAndOperators[highestPrecedenceIndex],
                          numsAndOperators[highestPrecedenceIndex-1],
                          numsAndOperators[highestPrecedenceIndex+1]);
@@ -77,11 +79,13 @@ function equalsFunctionality(numsAndOperators) {
 
 numButtons.forEach((button) => {
     button.addEventListener("click", (e) =>  {
-        if (button.id != "clear" && button.className == "num-button") {
+        if (button.className == "num-button") {
             displayValue += button.textContent;
             currentNum += button.textContent;
         } else if (button.className == "operator-button" && button.id != "equals-button") {
-            values.push(currentNum);
+            if (currentNum != "") {
+               values.push(currentNum);
+            }
             values.push(button.textContent);
             currentNum = "";
             displayValue += " " + button.textContent + " ";
