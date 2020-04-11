@@ -1,3 +1,7 @@
+let displayValue = "";
+let currentNumDisplayValue = "";
+let values = [];
+
 function add(num1, num2) {
     return num1 + num2;
 }
@@ -63,10 +67,6 @@ function equalsFunctionality(numsAndOperators) {
     }
     return result;
 }
-
-let displayValue = "";
-let currentNumDisplayValue = "";
-let values = [];
 
 const numButtons = document.querySelectorAll("button");
 
