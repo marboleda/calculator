@@ -1,5 +1,5 @@
 let displayValue = "";
-let currentNumDisplayValue = "";
+let currentNum = "";
 let values = [];
 
 function add(num1, num2) {
@@ -75,20 +75,33 @@ numButtons.forEach((button) => {
     button.addEventListener("click", (e) =>  {
         if (button.id != "clear" && button.className == "num-button") {
             displayValue += button.textContent;
-            currentNumDisplayValue += button.textContent;
+            currentNum += button.textContent;
         } else if (button.className == "operator-button" && button.id != "equals-button") {
-            values.push(currentNumDisplayValue);
+            values.push(currentNum);
             values.push(button.textContent);
-            currentNumDisplayValue = "";
+            currentNum = "";
             displayValue += " " + button.textContent + " ";
         } else if (button.id == "equals-button") {
-            values.push(currentNumDisplayValue);
-            currentNumDisplayValue = equalsFunctionality(values);
-            values = [currentNumDisplayValue];
-            displayValue = currentNumDisplayValue;
+            console.log(values);
+            if (currentNum != "") {
+                values.push(currentNum);
+            }
+            if (values[values.length-1] == "x" ||
+                values[values.length-1] == "÷" ||
+                values[values.length-1] == "+" ||
+                values[values.length-1] == "-" ||
+                values.length == 0) {
+                    alert("Invalid input!");
+            } else {
+                currentNum = equalsFunctionality(values);
+                values = [currentNum];
+                displayValue = currentNum;
+                currentNum = "";
+                console.log(values);
+            }
         } else {
             displayValue = "";
-            currentNumDisplayValue = "";
+            currentNum = "";
             values = [];
         }
         document.querySelector("#display").textContent = displayValue;
