@@ -3,19 +3,19 @@ let currentNumDisplayValue = "";
 let values = [];
 
 function add(num1, num2) {
-    return num1 + num2;
+    return (+num1) + (+num2);
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    return (+num1) - (+num2);
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    return (+num1) * (+num2);
 }
 
 function divide(num1, num2) {
-    return num1 / num2;
+    return (+num1) / (+num2);
 }
 
 function operate(operation, num1, num2) {
@@ -64,6 +64,7 @@ function equalsFunctionality(numsAndOperators) {
             
         values[highestPrecedenceIndex+1] = result;
         values.splice(highestPrecedenceIndex-1, 2);
+        console.log(numsAndOperators);
     }
     return result;
 }
@@ -80,7 +81,6 @@ numButtons.forEach((button) => {
             values.push(button.textContent);
             currentNumDisplayValue = "";
             displayValue += " " + button.textContent + " ";
-            console.log(values);
         } else if (button.id == "equals-button") {
             values.push(currentNumDisplayValue);
             currentNumDisplayValue = equalsFunctionality(values);
