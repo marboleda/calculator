@@ -17,12 +17,7 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
-    if (num2 != 0) {
         return (+num1) / (+num2);
-    } else {
-        console.log("You can't divide by 0!");
-        return null;
-    }
 }
 
 function operate(operation, num1, num2) {
@@ -72,12 +67,9 @@ function equalsFunctionality(numsAndOperators) {
         result = operate(numsAndOperators[highestPrecedenceIndex],
                          numsAndOperators[highestPrecedenceIndex-1],
                          numsAndOperators[highestPrecedenceIndex+1]);
-        if (result != null) {    
-            values[highestPrecedenceIndex+1] = result;
-            values.splice(highestPrecedenceIndex-1, 2);
-        } else {
-            return null;
-        }
+   
+        values[highestPrecedenceIndex+1] = result;
+        values.splice(highestPrecedenceIndex-1, 2);
     }
     return result;
 }
@@ -85,8 +77,14 @@ function equalsFunctionality(numsAndOperators) {
 numButtons.forEach((button) => {
     button.addEventListener("click", (e) =>  {
         if (button.className == "num-button") {
-            displayValue += button.textContent;
-            currentNum += button.textContent;
+            if (button.id == "zero-button" && currentNum == "" && values[values.length-1] == "÷") {
+                alert("You cannot divide by 0!");
+                displayValue = displayValue.substr(0, displayValue.length -2);
+                values.pop();
+            } else {
+                displayValue += button.textContent;
+                currentNum += button.textContent;
+            }
         } else if (button.className == "operator-button" && button.id != "equals-button") {
             if (currentNum != "") {
                values.push(currentNum);
@@ -103,13 +101,8 @@ numButtons.forEach((button) => {
                     alert("Invalid input!");
             } else {
                 currentNum = equalsFunctionality(values);
-                if (currentNum != null) {
-                    values = [currentNum];
-                    displayValue = currentNum;
-                } else {
-                    displayValue = displayValue.substr(0, displayValue.length -1);
-                    values.pop();
-                }
+                values = [currentNum];
+                displayValue = currentNum;
                 currentNum = "";
             }
         } else { // user clicks CE button
