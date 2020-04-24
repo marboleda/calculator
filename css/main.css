@@ -2,16 +2,20 @@ h1 {
     text-align: center;
 }
 
+button {
+    margin: 5px;
+}
+
 #calculator {
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
     display: flex;
     flex-direction: column;
     border-color: black;
     border-style: solid;
     padding: 10px;
+    width: 40vh;
+    height: 50vh;
+    margin: 0 auto;
 }
 
 #display {
@@ -19,21 +23,29 @@ h1 {
     border-style: solid;
     text-align: right;
     margin: 10px;
+    flex-grow: 1;
 }
 
 #buttons {
     display: flex;
     flex-direction: row;
+    flex-grow: 9;
 }
 
 #num-buttons {
     display: grid;
     grid-template-columns: auto auto auto;
+    flex-grow: 3
 }
 
 #operator-buttons {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+}
+
+.operator-button {
+    flex-grow: 1;
 }
 
 #clear {
