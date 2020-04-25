@@ -5,7 +5,10 @@
 - CSS
 - JavaScript
 
+## What did I learn?
+- Dynamically manipulating arrays in JavaScript
+- More DOM manipulation
+
 ## To-Do
-- Style with CSS
 - Add a backspace button to allow user to undo if wrong number is clicked
 - Add keyboard support
