@@ -71,7 +71,7 @@ function equalsFunctionality(numsAndOperators) {
         values[highestPrecedenceIndex+1] = result;
         values.splice(highestPrecedenceIndex-1, 2);
     }
-    return result;
+    return Number(result.toFixed(2));
 }
 
 numButtons.forEach((button) => {
