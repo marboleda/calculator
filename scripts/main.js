@@ -81,6 +81,8 @@ numButtons.forEach((button) => {
                 alert("You cannot divide by 0!");
                 displayValue = displayValue.substr(0, displayValue.length -2);
                 values.pop();
+            } else if (button.id == "decimal-button" && currentNum.includes(".")) {
+                alert("Your current number already has a '.'!");
             } else {
                 displayValue += button.textContent;
                 currentNum += button.textContent;
