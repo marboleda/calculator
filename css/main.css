@@ -1,5 +1,16 @@
+body {
+    margin: 0;
+    background-color: #7CA5B8;
+}
+
 h1 {
     text-align: center;
+    margin-top: 0;
+    position: relative;
+    top: 20%;
+    color: #A9DBB8;
+    font-family: Arial;
+    font-size: 3rem;
 }
 
 button {
@@ -21,6 +32,9 @@ button {
 #display {
     border-color: black;
     border-style: solid;
+    background-color: black;
+    color: green;
+    font-weight: bold;
     text-align: right;
     margin: 10px;
     flex-grow: 1;
@@ -35,7 +49,7 @@ button {
 #num-buttons {
     display: grid;
     grid-template-columns: auto auto auto;
-    flex-grow: 3
+    flex-grow: 3;
 }
 
 #operator-buttons {
@@ -44,8 +58,14 @@ button {
     flex-grow: 1;
 }
 
+.num-button, #clear {
+    background-color: #82FF9E;
+}
+
 .operator-button {
     flex-grow: 1;
+    background-color: #49416D;
+    color: #A9DBB8;
 }
 
 #clear {
@@ -56,4 +76,13 @@ button {
 #zero-button {
     grid-column-start: 1;
     grid-column-end: 3;
+}
+
+.top {
+    position: relative;
+    background-color: #5D3DBE;
+    height: 15vh;
+    border-bottom-left-radius: 50% 29%;
+    border-bottom-right-radius: 50% 29%;
+    margin-bottom: 5vh;
 }
