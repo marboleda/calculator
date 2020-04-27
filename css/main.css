@@ -39,6 +39,7 @@ button {
     margin: 10px;
     flex-grow: 1;
     height: 3%;
+    font-size: 1.5rem;
 }
 
 #buttons {
