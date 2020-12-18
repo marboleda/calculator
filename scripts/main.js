@@ -124,4 +124,19 @@ numButtons.forEach((button) => {
     });
 });
 
+//Add keyboard support
+window.addEventListener('keydown', (e) => {
+    const validNumberKeys= ['1','2','3','4','5','6','7','8','9','0'];
+    const validOperationCodes = ['+','-','*','/'];
 
+    if (e.key == '0' && currentNum == "" && values[values.length-1] == '÷') {
+        divisionByZeroResponse();  
+    }
+    else if (e.key == '.' && decimalAlreadyPresent()) {
+        alert("Your current number already has a '.'!");       
+    } else if (validNumberKeys.includes(e.key)) {
+        displayValue += e.key;
+        currentNum += e.key;
+    }
+    document.querySelector("#display").textContent = displayValue;
+});
