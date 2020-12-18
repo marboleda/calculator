@@ -74,14 +74,22 @@ function equalsFunctionality(numsAndOperators) {
     return Number(result.toFixed(2));
 }
 
+function decimalAlreadyPresent() {
+    return currentNum.includes('.');
+}
+
+function divisionByZeroResponse() {
+    alert("You cannot divide by 0!");
+    displayValue = displayValue.substr(0, displayValue.length -2);
+    values.pop();
+}
+
 numButtons.forEach((button) => {
     button.addEventListener("click", (e) =>  {
         if (button.className == "num-button") {
             if (button.id == "zero-button" && currentNum == "" && values[values.length-1] == "÷") {
-                alert("You cannot divide by 0!");
-                displayValue = displayValue.substr(0, displayValue.length -2);
-                values.pop();
-            } else if (button.id == "decimal-button" && currentNum.includes(".")) {
+                divisionByZeroResponse();
+            } else if (button.id == "decimal-button" && decimalAlreadyPresent()) {
                 alert("Your current number already has a '.'!");
             } else {
                 displayValue += button.textContent;
@@ -115,4 +123,5 @@ numButtons.forEach((button) => {
         document.querySelector("#display").textContent = displayValue;
     });
 });
+
 
