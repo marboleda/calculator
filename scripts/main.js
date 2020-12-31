@@ -84,6 +84,21 @@ function divisionByZeroResponse() {
     values.pop();
 }
 
+function equalsButtonHandler() {
+    if (currentNum != "") {
+        values.push(currentNum);
+    }
+    if (isOperator(values[values.length-1]) ||
+        values.length == 0) {
+            alert("Invalid input!");
+    } else {
+        currentNum = equalsFunctionality(values);
+        values = [currentNum];
+        displayValue = currentNum;
+        currentNum = "";
+    }    
+}
+
 numButtons.forEach((button) => {
     button.addEventListener("click", (e) =>  {
         if (button.className == "num-button") {
@@ -103,18 +118,7 @@ numButtons.forEach((button) => {
             currentNum = "";
             displayValue += " " + button.textContent + " ";
         } else if (button.id == "equals-button") {
-            if (currentNum != "") {
-                values.push(currentNum);
-            }
-            if (isOperator(values[values.length-1]) ||
-                values.length == 0) {
-                    alert("Invalid input!");
-            } else {
-                currentNum = equalsFunctionality(values);
-                values = [currentNum];
-                displayValue = currentNum;
-                currentNum = "";
-            }
+            equalsButtonHandler();
         } else { // user clicks CE button
             displayValue = "";
             currentNum = "";
@@ -127,16 +131,32 @@ numButtons.forEach((button) => {
 //Add keyboard support
 window.addEventListener('keydown', (e) => {
     const validNumberKeys= ['1','2','3','4','5','6','7','8','9','0'];
-    const validOperationCodes = ['+','-','*','/'];
+    const validOperationKeys = ['+','-','*','/'];
 
     if (e.key == '0' && currentNum == "" && values[values.length-1] == '÷') {
         divisionByZeroResponse();  
-    }
-    else if (e.key == '.' && decimalAlreadyPresent()) {
+    } else if (e.key == '.' && decimalAlreadyPresent()) {
         alert("Your current number already has a '.'!");       
     } else if (validNumberKeys.includes(e.key)) {
         displayValue += e.key;
         currentNum += e.key;
+    } else if (validOperationKeys.includes(e.key)) {
+        if (currentNum != "") {
+            values.push(currentNum);
+        }
+        let keyTranslation;
+        if (e.key === '*') {
+            keyTranslation = 'x';
+        } else if (e.key === '/') {
+            keyTranslation = '÷';
+        } else {
+            keyTranslation = e.key;
+        }
+        values.push(keyTranslation);
+        currentNum = "";
+        displayValue += " " + keyTranslation + " ";     
+    } else if (e.key == '=' || e.key == 'Enter') {
+        equalsButtonHandler();
     }
     document.querySelector("#display").textContent = displayValue;
 });
